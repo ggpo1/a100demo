@@ -1,0 +1,62 @@
+*, html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    
+    
+}
+
+.app {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #E5E5E5;
+}
+
+.header {
+    width: 100%;
+    height: 20%;
+    
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    
+    
+}
+
+.sidebar {
+    width: 7%;
+    height: 100%;
+    background: #FFFFFF;
+    border-radius: 0px 10px 0px 0px;
+}
+
+.content-block {
+    width: 89%;
+    height: 100%;
+    margin-right: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: transparent;
+}
+
+.page-content {
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+    border-radius: 10px;
+}
+
+.page-footer {
+    width: 100%;
+    height: 20%;
+    background: transparent;
+}
