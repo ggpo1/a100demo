@@ -1,22 +1,42 @@
 import React from "react";
 import {
     StyleSheet,
-    Button,
     View,
-    SafeAreaView,
-    Text,
-    Alert,
-
+    TouchableHighlight
 } from 'react-native';
-
-import MapView from 'react-native-maps';
 import Colors from "../../data/Colors";
+import IVikData from "../../models/IVikData";
+import AppState from "../../data/State";
+import EventEmitter from 'EventEmitter';
 
-type MyProps = { color: Colors };
-type MyState = {};
-export default class Circle extends React.Component<MyProps, MyState> {
+type MyProps = { eEmitter: EventEmitter, modalVisible: boolean, vikData: IVikData, color: Colors };
+export default class Circle extends React.Component<MyProps> {
+
+    state = {
+        modalVisible: null,
+        vikData: null,
+        color: null,
+        eEmitter: null,
+    }
+
+    constructor(props) {
+        super(props);
+
+        this.state = { 
+            modalVisible: this.props.modalVisible,
+            vikData: this.props.vikData,
+            color: this.props.color,
+            eEmitter: this.props.eEmitter,
+        }
+    }
+
+    onPressHandle() {
+        this.state.eEmitter.emit('openModal', true);
+        AppState.State.vikInfo = {vikData: this.state.vikData, color: this.state.color}
+    }
 
     render() {
+        // alert(this.state.modalVisible)
         const styles = StyleSheet.create({
             circle: {
                 width: 45,
@@ -28,7 +48,9 @@ export default class Circle extends React.Component<MyProps, MyState> {
             }
         });
         return (
-            <View style={styles.circle} />
+            <TouchableHighlight onPress={() => this.onPressHandle()} underlayColor={'transparent'} >
+                <View style={styles.circle} />
+            </TouchableHighlight>
         );
     }
 }
