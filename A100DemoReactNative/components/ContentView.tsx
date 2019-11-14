@@ -20,6 +20,8 @@ import ChtoView from "./ChtoView";
 import ChtoData from "../data/ChtoData";
 import DocsView from "./DocsView";
 import DocsData from "../data/DocsData";
+import PhotoGallery from "./PhotoGallery";
+import Images from "../data/Photos";
 
 export default class ContentView extends React.Component {
 
@@ -79,6 +81,19 @@ export default class ContentView extends React.Component {
         } else if (this.state.contentMode === 4) {
             title = <Text>Мои документы</Text>;
             contentContent = <DocsView DocsData={DocsData} />;
+        } else if (this.state.contentMode == 5) {
+            title = <Text>Фотогалерея</Text>;
+            contentContent = <PhotoGallery bigCollection={true} photos={[
+                Images.first,
+                Images.second,
+                Images.third,
+                Images.vik1,
+                Images.vik2,
+                Images.vik3,
+                Images.vik4,
+                Images.vik5,
+                Images.vik6,
+            ]} eEmitter={null} />
         }
 
         content = <React.Fragment>
@@ -127,6 +142,11 @@ export default class ContentView extends React.Component {
                                         <View style={{ ...styles.menuBarItem, ...styles.menuBarItemMarginTop }}>
                                             <TouchableHighlight onPress={() => this.setContentMode(3)} underlayColor={'transparent'} >
                                                 <Image source={require('../assets/CHTO.png')} style={{ width: 19, height: 21, marginLeft: '32%' }} />
+                                            </TouchableHighlight>
+                                        </View>
+                                        <View style={{ ...styles.menuBarItem, ...styles.menuBarItemMarginTop }}>
+                                            <TouchableHighlight onPress={() => this.setContentMode(5)} underlayColor={'transparent'} >
+                                                <Image source={require('../assets/Gallery.png')} style={{ width: 19, height: 21, marginLeft: '32%' }} />
                                             </TouchableHighlight>
                                         </View>
                                         <View style={{ ...styles.menuBarItem, ...styles.menuBarItemMarginTop }}>

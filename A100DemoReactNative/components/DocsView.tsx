@@ -16,9 +16,15 @@ import IChtoData from "../models/IChtoData";
 import Colors from "../data/Colors";
 import IDocData from "../models/IDocData";
 // import Pdf from 'react-native-pdf';
+import { WebView } from 'react-native-webview';
+import HTMLView from 'react-native-htmlview';
+
+
+import Pdf from 'react-native-pdf';
+
 
 type Props = { DocsData: Array<IDocData> };
-type State = { Source: Array<IDocData>, browseModal: boolean };
+type State = { Source: Array<IDocData>, browseModal: boolean, url: string };
 export default class DocsView extends React.Component<Props, State> {
 
     constructor(props) {
@@ -27,12 +33,13 @@ export default class DocsView extends React.Component<Props, State> {
         this.state = {
             Source: this.props.DocsData,
             browseModal: false,
+            url: ''
         }
     }
 
     render() {
+        const resourceType = 'base64';
 
-        
 
         let headers = [
             'Имя файла',
@@ -53,14 +60,25 @@ export default class DocsView extends React.Component<Props, State> {
         let _contentRows = [];
         this.state.Source.forEach(element => {
             _contentRows.push(
+
                 <View key={'contentRow' + i} style={{ ...styles.contentRow, ...{ backgroundColor: 'white' } }}>
-                    <View style={styles.cellCell}><Text style={{ fontSize: 11, marginLeft: 5 }}>{element.fileName}</Text></View>
+                    <TouchableHighlight
+                        style={styles.cellCell}
+                        underlayColor={'transparent'}
+                        onPress={() => {
+                            this.setState({ ...this.state, ...{ browseModal: true, url: element.url } })
+                        }}>
+                        <Text style={{ fontSize: 11, marginLeft: 5 }}>{element.fileName}</Text>
+                    </TouchableHighlight >
                     <View style={styles.headerCell}><Text style={{ fontSize: 11, }}>{element.fileSize}</Text></View>
                 </View>
+
             );
             i++;
         });
 
+        // const source = {uri:'file:///sdcard/test.pdf'};
+        // const source = require("../assets/otchet.html").default;
 
         return (
             <React.Fragment>
@@ -85,13 +103,12 @@ export default class DocsView extends React.Component<Props, State> {
                         }}>
                         <Image source={require('../assets/Close.png')} style={{ width: 20, height: 20, marginTop: 5, marginLeft: 5 }} />
                     </TouchableHighlight>
-                    {/* <Pdf
-                        source={{
-                            uri: 'http://www.orimi.com/pdf-test.pdf'
-                        }}
-                        
-                        style={{}}
-                    /> */}
+                    <WebView source={{ uri: this.state.url }} />
+                    {/* <WebView source={require('../assets/vik1.jpg')} /> */}
+
+                    
+
+
                 </Modal>
             </React.Fragment>
 

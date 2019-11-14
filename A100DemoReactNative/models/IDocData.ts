@@ -3,6 +3,7 @@ interface IDocData {
     fileSize: string,
     filePath: string,
     file?: any,
+    url: string,
 }
 
 export default IDocData;

@@ -142,13 +142,13 @@ export default class VikInfoView extends React.Component<MyProps, MyState> {
                                 flex: 1,
                             }}>
                                 <Text style={styles.infoRowText}>Повреждение до ремонта</Text>
-                                <PhotoGallery photos={this.state.vikInfo.vikData.photos} eEmitter={this.state.eEmitter} />
+                                <PhotoGallery bigCollection={false} photos={this.state.vikInfo.vikData.photos} eEmitter={this.state.eEmitter} />
                             </View>
                             <View style={{
                                 flex: 1,
                             }}>
                                 <Text style={styles.infoRowText}>После ремонта</Text>
-                                <PhotoGallery photos={this.state.vikInfo.vikData.repairPhotos} eEmitter={this.state.eEmitter} />
+                                <PhotoGallery bigCollection={false} photos={this.state.vikInfo.vikData.repairPhotos} eEmitter={this.state.eEmitter} />
                             </View>
                         </View>
                     </View>

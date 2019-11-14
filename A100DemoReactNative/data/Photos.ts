@@ -2,6 +2,12 @@ const Images = {
     first: require('../assets/first.jpg'),
     second: require('../assets/second.jpg'),
     third: require('../assets/third.jpg'),
+    vik1: require('../assets/vik1.jpg'),
+    vik2: require('../assets/vik2.jpg'),
+    vik3: require('../assets/vik3.jpg'),
+    vik4: require('../assets/vik4.jpg'),
+    vik5: require('../assets/vik5.jpg'),
+    vik6: require('../assets/vik6.jpg'),
     specifications: {
         st1: require('../assets/st1.png'),
         st2: require('../assets/st2.png'),
