@@ -64,10 +64,9 @@ export default class PhotoGallery extends React.Component<Props, State> {
 
         for (let i = 0; i < this.state.photos.length; i++) {
             let _path = this.state.photos[i];
-            console.log(_path);
             images.push(
                 <TouchableHighlight key={i} style={styles.GalleryImage} onPress={() => this.onPressHandle(i)} underlayColor={'transparent'} >
-                    <Image source={this.state.photos[i]} style={{ width: 30, height: 30, borderRadius: 3 }} />
+                    <Image source={_path} style={{ width: 30, height: 30, borderRadius: 3 }} />
                 </TouchableHighlight>
             );
         }

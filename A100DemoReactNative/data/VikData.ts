@@ -1,6 +1,7 @@
 import IVikData from "../models/IVikData";
 import { number } from "prop-types";
 import Images from './Photos'; 
+import Colors from "./Colors";
 
 const vikData: Array<IVikData> = [
     { 
@@ -27,6 +28,7 @@ const vikData: Array<IVikData> = [
             Images.second,
             Images.third,
         ],
+        color: Colors.Red,
     },
     { 
         row: 3, 
@@ -52,6 +54,7 @@ const vikData: Array<IVikData> = [
             Images.second,
             Images.third,
         ],
+        color: Colors.Red,
     },
     { 
         row: 1, 
@@ -77,6 +80,7 @@ const vikData: Array<IVikData> = [
             Images.second,
             Images.third,
         ],
+        color: Colors.Green,
     },
     { 
         row: 1, 
@@ -102,6 +106,7 @@ const vikData: Array<IVikData> = [
             Images.second,
             Images.third,
         ],
+        color: Colors.Green,
     },
     { 
         row: 5, 
@@ -127,6 +132,7 @@ const vikData: Array<IVikData> = [
             Images.second,
             Images.third,
         ],
+        color: Colors.Red
     },
     { 
         row: 6, 
@@ -152,6 +158,7 @@ const vikData: Array<IVikData> = [
             Images.second,
             Images.third,
         ],
+        color: Colors.Green,
     },
     { 
         row: 6, 
@@ -177,6 +184,7 @@ const vikData: Array<IVikData> = [
             Images.second,
             Images.third,
         ],
+        color: Colors.Green,
     },
 ]
 

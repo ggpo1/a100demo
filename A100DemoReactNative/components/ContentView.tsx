@@ -13,6 +13,13 @@ import Map from './Map';
 import MapCanvas from './MapCanvas/Map';
 import AppState from '../data/State';
 import SpecificationsView from "./SpecificationsView";
+import specData from "../data/SpecificationsData";
+import VikTableView from "./VikTableView";
+import vikData from "../data/VikData";
+import ChtoView from "./ChtoView";
+import ChtoData from "../data/ChtoData";
+import DocsView from "./DocsView";
+import DocsData from "../data/DocsData";
 
 export default class ContentView extends React.Component {
 
@@ -59,10 +66,19 @@ export default class ContentView extends React.Component {
             title = <Text>Схема</Text>;
         } else if (this.state.contentMode === 1) {
             title = <Text>Главная</Text>;
-            contentContent = <SpecificationsView />
+            contentContent = <SpecificationsView SpecData={specData} />;
         } else if (this.state.contentMode === -1) {
             title = <Text>Dev Mode</Text>;
             contentContent = <MapCanvas />
+        } else if (this.state.contentMode === 2) {
+            title = <Text>Ведомость дефектов</Text>;
+            contentContent = <VikTableView VikData={vikData} />;
+        } else if (this.state.contentMode === 3) {
+            title = <Text>Еженедельный осмотр</Text>;
+            contentContent = <ChtoView ChtoData={ChtoData} />;
+        } else if (this.state.contentMode === 4) {
+            title = <Text>Мои документы</Text>;
+            contentContent = <DocsView DocsData={DocsData} />;
         }
 
         content = <React.Fragment>
@@ -83,7 +99,7 @@ export default class ContentView extends React.Component {
                             marginLeft: '6%',
                             color: '#6B737C',
                             fontFamily: 'Roboto',
-                            fontSize: 25,
+                            fontSize: 24,
                         }}>{title}</Text>
                     </View>
                 </View>
@@ -99,12 +115,7 @@ export default class ContentView extends React.Component {
                                             </TouchableHighlight>
                                         </View>
                                         <View style={{ ...styles.menuBarItem, ...styles.menuBarItemMarginTop }}>
-                                            <TouchableHighlight onPress={() => alert("123")} underlayColor={'transparent'} >
-                                                <Image source={require('../assets/Project.png')} style={{ width: 19, height: 17, marginLeft: '32%' }} />
-                                            </TouchableHighlight>
-                                        </View>
-                                        <View style={{ ...styles.menuBarItem, ...styles.menuBarItemMarginTop }}>
-                                            <TouchableHighlight onPress={() => alert("123")} underlayColor={'transparent'} >
+                                            <TouchableHighlight onPress={() => this.setContentMode(2)} underlayColor={'transparent'} >
                                                 <Image source={require('../assets/Journal.png')} style={{ width: 19, height: 21, marginLeft: '32%' }} />
                                             </TouchableHighlight>
                                         </View>
@@ -114,8 +125,13 @@ export default class ContentView extends React.Component {
                                             </TouchableHighlight>
                                         </View>
                                         <View style={{ ...styles.menuBarItem, ...styles.menuBarItemMarginTop }}>
-                                            <TouchableHighlight onPress={() => alert("123")} underlayColor={'transparent'} >
-                                                <Image source={require('../assets/PTO.png')} style={{ width: 19, height: 21, marginLeft: '32%' }} />
+                                            <TouchableHighlight onPress={() => this.setContentMode(3)} underlayColor={'transparent'} >
+                                                <Image source={require('../assets/CHTO.png')} style={{ width: 19, height: 21, marginLeft: '32%' }} />
+                                            </TouchableHighlight>
+                                        </View>
+                                        <View style={{ ...styles.menuBarItem, ...styles.menuBarItemMarginTop }}>
+                                            <TouchableHighlight onPress={() => this.setContentMode(4)} underlayColor={'transparent'} >
+                                                <Image source={require('../assets/Docs.png')} style={{ width: 19, height: 21, marginLeft: '32%' }} />
                                             </TouchableHighlight>
                                         </View>
                                     </View>
