@@ -15,12 +15,18 @@ import AppState from '../data/State';
 import IChtoData from "../models/IChtoData";
 import Colors from "../data/Colors";
 import IDocData from "../models/IDocData";
+
 // import Pdf from 'react-native-pdf';
 import { WebView } from 'react-native-webview';
-import HTMLView from 'react-native-htmlview';
+// import HTMLView from 'react-native-htmlview';
+// import Pdf from 'react-native-pdf';
+// import Video from 'react-native-video';
 
+// import Obrushenie from '../assets/video1.mp4';
+import video1 from '../assets/video1';
+// import RNFetchBlob from 'rn-fetch-blob';
+// const { config, fs } = RNFetchBlob;
 
-import Pdf from 'react-native-pdf';
 
 
 type Props = { DocsData: Array<IDocData> };
@@ -40,6 +46,7 @@ export default class DocsView extends React.Component<Props, State> {
     render() {
         const resourceType = 'base64';
 
+        // var content = await rnFs.readFile(Otchet,"utf-8");
 
         let headers = [
             'Имя файла',
@@ -79,7 +86,12 @@ export default class DocsView extends React.Component<Props, State> {
 
         // const source = {uri:'file:///sdcard/test.pdf'};
         // const source = require("../assets/otchet.html").default;
-
+        // let _html = '' + Otchet
+        // var fs = require('fs'); //Filesystem
+        // console.log(Otchet);    
+        // console.log(typeof(Otchet));
+        // var content = fs.readFileSync(Otchet, "utf-8");
+        // const content = require('file:///storage/emulated/0/A100Demo/index.html');
         return (
             <React.Fragment>
                 <View style={styles.VikTableWrapper}>
@@ -103,12 +115,13 @@ export default class DocsView extends React.Component<Props, State> {
                         }}>
                         <Image source={require('../assets/Close.png')} style={{ width: 20, height: 20, marginTop: 5, marginLeft: 5 }} />
                     </TouchableHighlight>
-                    <WebView source={{ uri: this.state.url }} />
-                    {/* <WebView source={require('../assets/vik1.jpg')} /> */}
+                    {/* <WebView source={{ uri: this.state.url }} /> */}
+                    {/* <WebView source={{ html: content }} /> */}
 
-                    
-
-
+                    <WebView source={{ uri: 'file:///storage/emulated/0/A100Demo/assets/video1.mp4' }}
+                        originWhitelist={['*']}/>
+            
+            
                 </Modal>
             </React.Fragment>
 
