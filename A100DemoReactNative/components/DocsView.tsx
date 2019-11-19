@@ -8,7 +8,8 @@ import {
     Alert,
     Modal,
     Image,
-    TouchableHighlight
+    TouchableHighlight,
+    // PermissionsAndroid
 } from 'react-native';
 
 import AppState from '../data/State';
@@ -23,24 +24,47 @@ import { WebView } from 'react-native-webview';
 // import Video from 'react-native-video';
 
 // import Obrushenie from '../assets/video1.mp4';
-import video1 from '../assets/video1';
 // import RNFetchBlob from 'rn-fetch-blob';
 // const { config, fs } = RNFetchBlob;
 
+// import Video from 'react-native-video';
+//Import React Native Video to play video
+import MediaControls, { PLAYER_STATES } from 'react-native-media-controls';
+import * as Permissions from 'expo-permissions';
+
+import { Video } from 'expo-av';
+
+// import Video from 'react-native-af-video-player'
+
+
+export async function requestLocationPermission() {
+    try {
+        const granted = await Permissions.askAsync(Permissions.CAMERA);
+        const storage = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    } catch (err) {
+        console.warn(err)
+    }
+}
 
 
 type Props = { DocsData: Array<IDocData> };
 type State = { Source: Array<IDocData>, browseModal: boolean, url: string };
 export default class DocsView extends React.Component<Props, State> {
-
+    videoPlayer;
     constructor(props) {
         super(props);
 
         this.state = {
             Source: this.props.DocsData,
             browseModal: false,
-            url: ''
+            url: '',
         }
+    }
+
+
+
+    async componentWillMount() {
+        await requestLocationPermission()
     }
 
     render() {
@@ -73,7 +97,7 @@ export default class DocsView extends React.Component<Props, State> {
                         style={styles.cellCell}
                         underlayColor={'transparent'}
                         onPress={() => {
-                            this.setState({ ...this.state, ...{ browseModal: true, url: element.url } })
+                            this.setState({ ...this.state, ...{ browseModal: true, url: element.file } })
                         }}>
                         <Text style={{ fontSize: 11, marginLeft: 5 }}>{element.fileName}</Text>
                     </TouchableHighlight >
@@ -84,6 +108,11 @@ export default class DocsView extends React.Component<Props, State> {
             i++;
         });
 
+
+
+        // const source = require('../assets/player.html');
+        // console.log(source)
+        // const url = ''
         // const source = {uri:'file:///sdcard/test.pdf'};
         // const source = require("../assets/otchet.html").default;
         // let _html = '' + Otchet
@@ -105,23 +134,46 @@ export default class DocsView extends React.Component<Props, State> {
                     </View>
                 </View>
                 <Modal visible={this.state.browseModal} transparent={true}>
+
+                    {/* <Image source={require('../assets/Close.png')} style={{ width: 20, height: 20, marginTop: 5, marginLeft: 5 }} /> */}
+
+                    {/* <WebView source={{ uri: this.state.url }} /> */}
+                    {/* <WebView source={{ html: '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><title>video</title></head><body><video width="100%" height="100%" fullscreen autoplay controls><source src="file:///storage/emulated/0/play/video1.mp4"></video></body></html>' }} /> */}
+                    {/* <WebView source={{ html: source }}/> */}
+                    {/* <WebView source={{ uri: 'file:///storage/emulated/0/play/videoTest.html' }}
+                        originWhitelist={['*']} /> */}
+
+                    {/* <WebView
+                        originWhitelist={['*']}
+                        source={source}
+                    /> */}
+
+                    {/* <WebView style={{ height: 200 }} source={{ html: "<video style=' height:180;width:500;' controls src='https://gcs-vimeo.akamaized.net/exp=1574084635~acl=%2A%2F652333414.mp4%2A~hmac=9f6fee2bf57bd7f9240f64c46afd30726db6f8bb4e9fd5d9f15bbd80c98b96b5/vimeo-prod-skyfire-std-us/01/3967/7/194837908/652333414.mp4'></video>" }} allowsInlineMediaPlayback={true} mediaPlaybackRequiresUserAction={true} /> */}
+                    {/* <Video url={url} /> */}
+
+
+
+
+
                     <TouchableHighlight
                         style={{
-                            flex: 0.08,
+                            flex: 1,
                             backgroundColor: 'black',
                         }}
                         onPress={() => {
                             this.setState({ ...this.state, ...{ browseModal: false } })
                         }}>
-                        <Image source={require('../assets/Close.png')} style={{ width: 20, height: 20, marginTop: 5, marginLeft: 5 }} />
+                        <Video
+                            source={this.state.url}
+                            rate={1.0}
+                            volume={1.0}
+                            isMuted={false}
+                            resizeMode="cover"
+                            shouldPlay
+                            isLooping
+                            style={{ width: '100%', height: '100%' }}
+                        />
                     </TouchableHighlight>
-                    {/* <WebView source={{ uri: this.state.url }} /> */}
-                    {/* <WebView source={{ html: content }} /> */}
-
-                    <WebView source={{ uri: 'file:///storage/emulated/0/A100Demo/assets/video1.mp4' }}
-                        originWhitelist={['*']}/>
-            
-            
                 </Modal>
             </React.Fragment>
 

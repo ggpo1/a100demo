@@ -21,7 +21,7 @@ export default class PhotoGallery extends React.Component<Props, State> {
                     props: {
                         // Or you can set source directory.
                         url: '',
-                        source: require('../assets/first.jpg')
+                        source: require('../node_modules/first.jpg')
                     }
                 }
             ],
@@ -91,7 +91,7 @@ export default class PhotoGallery extends React.Component<Props, State> {
             }
         });
 
-        let first = '../assets/first.jpg';
+        let first = '../node_modules/first.jpg';
 
         // console.log(this.props.photos);
 
@@ -121,7 +121,7 @@ export default class PhotoGallery extends React.Component<Props, State> {
                                     onPress={() => {
                                         this.setState({ ...this.state, ...{ browseModal: false } })
                                     }}>
-                                    <Image source={require('../assets/Close.png')} style={{ width: 20, height: 20, marginTop: 5, marginLeft: 5 }} />
+                                    <Image source={require('../node_modules/Close.png')} style={{ width: 20, height: 20, marginTop: 5, marginLeft: 5 }} />
                                 </TouchableHighlight>
                                 <ImageViewer imageUrls={this.state.images} enableImageZoom={true} saveToLocalByLongPress={true} />
                             </Modal>
@@ -142,7 +142,7 @@ export default class PhotoGallery extends React.Component<Props, State> {
                             onPress={() => {
                                 this.setState({ ...this.state, ...{ browseModal: false } })
                             }}>
-                            <Image source={require('../assets/Close.png')} style={{ width: 20, height: 20, marginTop: 5, marginLeft: 5 }} />
+                            <Image source={require('../node_modules/Close.png')} style={{ width: 20, height: 20, marginTop: 5, marginLeft: 5 }} />
                         </TouchableHighlight>
                         <ImageViewer imageUrls={this.state.images} enableImageZoom={true} saveToLocalByLongPress={true} />
                     </Modal>

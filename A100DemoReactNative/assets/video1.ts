@@ -1,3 +1,0 @@
-const video1 = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="X-UA-Compatible" content="ie=edge"><title>video</title></head><body><video width="100%" height="100%" fullscreen autoplay controls><source src="file:///storage/emulated/0/A100Demo/assets/video1.mp4" type="video/mp4"></video></body></html>';
-
-export default video1;

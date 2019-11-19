@@ -30,7 +30,7 @@ export default class PhotoModal extends React.Component<Props, State> {
         return (
             <View style={styles.wrapper}>
                 <TouchableHighlight style={{ flex: 1, borderRadius: 10, }} onPress={this.onPressHandle} underlayColor={'transparent'} >
-                    <Image source={require('../assets/first.jpg')} style={{ borderRadius: 10, width: '100%', height: 300,  }} />
+                    <Image source={require('../node_modules/first.jpg')} style={{ borderRadius: 10, width: '100%', height: 300,  }} />
                 </TouchableHighlight>
             </View>
         );

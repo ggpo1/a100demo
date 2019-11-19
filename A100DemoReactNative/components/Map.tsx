@@ -97,7 +97,7 @@ export default class Map extends React.Component {
             photoModal = <PhotoModal eEmitter={eEmitter} visible={this.state.browsePhotoModalVisible} />
         }
 
-            MapContent = <ImageBackground source={require('../assets/map.jpg')} style={{ flex: 1, borderRadius: 10, }} imageStyle={{ borderRadius: 10, }}>
+            MapContent = <ImageBackground source={require('../node_modules/map.jpg')} style={{ flex: 1, borderRadius: 10, }} imageStyle={{ borderRadius: 10, }}>
 
                 <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={1} cell={1} x={100} y={50} type={1} isVertical={false} color={StillageColors.BLUE} />
                 <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={1} cell={2} x={257} y={50} type={6} isVertical={false} color={StillageColors.BLUE} />

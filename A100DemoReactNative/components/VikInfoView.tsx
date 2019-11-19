@@ -17,7 +17,7 @@ import AppState from '../data/State';
 import PhotoGallery from './PhotoGallery';
 
 
-type MyProps = { eEmitter: EventEmitter, visible: boolean };
+type MyProps = { isChild?: boolean, eEmitter: EventEmitter, visible: boolean };
 type MyState = { modalVisible: boolean, eEmitter: EventEmitter, vikInfo };
 export default class VikInfoView extends React.Component<MyProps, MyState> {
     state = {
@@ -55,7 +55,7 @@ export default class VikInfoView extends React.Component<MyProps, MyState> {
                 <View style={styles.vikInfoHeader}>
                     <View style={styles.headerLeft}>
                         <TouchableHighlight onPress={this.onPressHandle} underlayColor={'transparent'} >
-                            <Image source={require('../assets/Close.png')} style={{ width: 20, height: 20 }} />
+                            <Image source={require('../node_modules/Close.png')} style={{ width: 20, height: 20 }} />
                         </TouchableHighlight>
 
                     </View>
