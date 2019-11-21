@@ -7,7 +7,9 @@ import {
     Text,
     Alert,
     Image,
-    TouchableHighlight
+    TouchableHighlight,
+    ScrollView,
+    ImageBackground
 } from 'react-native';
 import Map from './Map';
 import MapCanvas from './MapCanvas/Map';
@@ -27,6 +29,8 @@ export default class ContentView extends React.Component {
 
     state = {
         contentMode: 0,
+        isStillageView: false,
+        isAllStillage: false,
     };
 
     constructor(props) {
@@ -34,6 +38,8 @@ export default class ContentView extends React.Component {
 
         this.state = {
             contentMode: 6,
+            isAllStillage: false,
+            isStillageView: false,
         }
 
         this.setContentMode = this.setContentMode.bind(this);
@@ -46,6 +52,8 @@ export default class ContentView extends React.Component {
     setContentMode(mode) {
         this.setState({
             contentMode: mode,
+            isAllStillage: false,
+            isStillageView: false,
         })
     }
 
@@ -62,10 +70,72 @@ export default class ContentView extends React.Component {
         let content;
         let contentContent;
         let title;
+        let headerRight
+        let allStillage;
+        let stillageView;
 
         if (this.state.contentMode === 0) {
+            if (this.state.isStillageView) {
+                stillageView = <TouchableHighlight onPress={() => this.setState({ ...this.state, ...{ isStillageView: false } })} style={{
+                    position: 'absolute',
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: 10,
+                }}>
+                    <ImageBackground source={require('../node_modules/stillageView.png')}
+                        style={{
+                            position: 'absolute',
+                            width: '100%',
+                            height: '100%',
+                        }} imageStyle={{  }}>
+                    </ImageBackground>
+                </TouchableHighlight>;
+            }
+
+            if (this.state.isAllStillage) {
+                stillageView = <TouchableHighlight onPress={() => this.setState({ ...this.state, ...{ isAllStillage: false } })} style={{
+                    position: 'absolute',
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: 10,
+                }}>
+                    <ImageBackground source={require('../node_modules/allStillage.png')}
+                        style={{
+                            position: 'absolute',
+                            width: '100%',
+                            height: '100%',
+                        }} imageStyle={{  }}>
+                    </ImageBackground>
+                </TouchableHighlight>;
+            }
+
             contentContent = <Map />;
             title = <Text>Схема</Text>;
+            headerRight = <View style={styles.headerRight}>
+                <TouchableHighlight style={{
+                    flex: 0.4,
+                    height: '60%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backgroundColor: '#2196f3',
+                    borderRadius: 5,
+                }}
+                    onPress={() => this.setState({ ...this.state, ...{ isStillageView: true } })} underlayColor={'transparent'} >
+                    <Text style={{ fontSize: 15, fontWeight: 'bold', color: 'white' }} >ПЕРЕЙТИ В СТЕЛЛАЖ</Text>
+                </TouchableHighlight>
+                <TouchableHighlight style={{
+                    flex: 0.4,
+                    height: '60%',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backgroundColor: '#2196f3',
+                    marginLeft: '5%',
+                    borderRadius: 5,
+                }}
+                onPress={() => this.setState({ ...this.state, ...{ isAllStillage: true } })} underlayColor={'transparent'} >
+                    <Text style={{ fontSize: 15, fontWeight: 'bold', color: 'white' }} >ПОКАЗАТЬ ВСЮ КАРТУ</Text>
+                </TouchableHighlight>
+            </View>;
         } else if (this.state.contentMode === 1) {
             title = <Text>Элементы</Text>;
             contentContent = <SpecificationsView SpecData={specData} />;
@@ -108,15 +178,15 @@ export default class ContentView extends React.Component {
                         <Text style={{ fontWeight: 'bold', fontSize: 20 }}>Проект: </Text>
                         <Text style={{ textDecorationLine: 'underline', fontSize: 20 }}>929-Э-18</Text>
                     </View>
-                    <View style={{ flex: 0.1, flexDirection: 'row'}}>
+                    <View style={{ flex: 0.1, flexDirection: 'row' }}>
                         <Text style={{ fontWeight: 'bold', fontSize: 20 }}>Заказчик: </Text>
                         <Text style={{ textDecorationLine: 'underline', fontSize: 20 }}>ООО «КОКА-КОЛА ЭЙЧБИСИ ЕВРАЗИЯ»</Text>
                     </View>
-                    <View style={{ flex: 0.1, flexDirection: 'row'}}>
+                    <View style={{ flex: 0.1, flexDirection: 'row' }}>
                         <Text style={{ fontWeight: 'bold', fontSize: 20 }}>Объект: </Text>
                         <Text style={{ textDecorationLine: 'underline', fontSize: 20 }}>Кока-Кола Щёлково</Text>
                     </View>
-                    <View style={{ flex: 0.1, flexDirection: 'row'}}>
+                    <View style={{ flex: 0.1, flexDirection: 'row' }}>
                         <Text style={{ fontWeight: 'bold', fontSize: 20 }}>Ответственный: </Text>
                         <Text style={{ textDecorationLine: 'underline', fontSize: 20 }}>Кондратьев М.А.</Text>
                     </View>
@@ -145,50 +215,41 @@ export default class ContentView extends React.Component {
                             fontSize: 24,
                         }}>{title}</Text>
                     </View>
+                    {headerRight}
                 </View>
                 <View style={styles.content}>
                     <React.Fragment>
                         <View style={styles.content}>
                             <View style={styles.menuBar}>
-                                <React.Fragment>
+                                <ScrollView>
                                     <View style={styles.menuBarItemsWrapper}>
-                                        <View style={{ ...{ marginTop: 30 }, ...styles.menuBarItem }}>
-                                            <TouchableHighlight onPress={() => this.setContentMode(6)} underlayColor={'transparent'} >
-                                                <Image source={require('../node_modules/Project.png')} style={{ width: 19, height: 14, marginLeft: '32%' }} />
-                                            </TouchableHighlight>
-                                        </View>
-                                        <View style={{ ...{ marginTop: 30 }, ...styles.menuBarItem }}>
-                                            <TouchableHighlight onPress={() => this.setContentMode(1)} underlayColor={'transparent'} >
-                                                <Image source={require('../node_modules/Object.png')} style={{ width: 19, height: 14, marginLeft: '32%' }} />
-                                            </TouchableHighlight>
-                                        </View>
-                                        <View style={{ ...styles.menuBarItem, ...styles.menuBarItemMarginTop }}>
-                                            <TouchableHighlight onPress={() => this.setContentMode(2)} underlayColor={'transparent'} >
-                                                <Image source={require('../node_modules/Journal.png')} style={{ width: 19, height: 21, marginLeft: '32%' }} />
-                                            </TouchableHighlight>
-                                        </View>
-                                        <View style={{ ...styles.menuBarItem, ...styles.menuBarItemMarginTop }}>
-                                            <TouchableHighlight onPress={() => this.setContentMode(0)} underlayColor={'transparent'} >
-                                                <Image source={require('../node_modules/Map.png')} style={{ width: 19, height: 21, marginLeft: '32%' }} />
-                                            </TouchableHighlight>
-                                        </View>
-                                        <View style={{ ...styles.menuBarItem, ...styles.menuBarItemMarginTop }}>
-                                            <TouchableHighlight onPress={() => this.setContentMode(3)} underlayColor={'transparent'} >
-                                                <Image source={require('../node_modules/CHTO.png')} style={{ width: 19, height: 21, marginLeft: '32%' }} />
-                                            </TouchableHighlight>
-                                        </View>
-                                        <View style={{ ...styles.menuBarItem, ...styles.menuBarItemMarginTop }}>
-                                            <TouchableHighlight onPress={() => this.setContentMode(5)} underlayColor={'transparent'} >
-                                                <Image source={require('../node_modules/Gallery.png')} style={{ width: 19, height: 21, marginLeft: '32%' }} />
-                                            </TouchableHighlight>
-                                        </View>
-                                        <View style={{ ...styles.menuBarItem, ...styles.menuBarItemMarginTop }}>
-                                            <TouchableHighlight onPress={() => this.setContentMode(4)} underlayColor={'transparent'} >
-                                                <Image source={require('../node_modules/Docs.png')} style={{ width: 19, height: 21, marginLeft: '32%' }} />
-                                            </TouchableHighlight>
-                                        </View>
+                                        <TouchableHighlight style={{ ...{ marginTop: 30 }, ...styles.menuBarItem }} onPress={() => this.setContentMode(6)} underlayColor={'transparent'} >
+                                            <Image source={require('../node_modules/Project.png')} style={{ width: 19, height: 14, marginLeft: '32%' }} />
+                                        </TouchableHighlight>
+                                        <TouchableHighlight style={{ ...{ marginTop: 30 }, ...styles.menuBarItem }} onPress={() => this.setContentMode(1)} underlayColor={'transparent'} >
+                                            <Image source={require('../node_modules/Object.png')} style={{ width: 19, height: 14, marginLeft: '32%' }} />
+                                        </TouchableHighlight>
+                                        <TouchableHighlight style={{ ...styles.menuBarItem, ...styles.menuBarItemMarginTop }} onPress={() => this.setContentMode(0)} underlayColor={'transparent'} >
+                                            <Image source={require('../node_modules/Map.png')} style={{ width: 19, height: 21, marginLeft: '32%' }} />
+                                        </TouchableHighlight>
+                                        <TouchableHighlight style={{ ...styles.menuBarItem, ...styles.menuBarItemMarginTop }} onPress={() => this.setContentMode(2)} underlayColor={'transparent'} >
+                                            <Image source={require('../node_modules/Journal.png')} style={{ width: 19, height: 21, marginLeft: '32%' }} />
+                                        </TouchableHighlight>
+                                        <TouchableHighlight style={{ ...styles.menuBarItem, ...styles.menuBarItemMarginTop }} onPress={() => this.setContentMode(3)} underlayColor={'transparent'} >
+                                            <Image source={require('../node_modules/CHTO.png')} style={{ width: 19, height: 21, marginLeft: '32%' }} />
+                                        </TouchableHighlight>
+                                        <TouchableHighlight style={{ ...styles.menuBarItem, ...styles.menuBarItemMarginTop }} onPress={() => this.setContentMode(5)} underlayColor={'transparent'} >
+                                            <Image source={require('../node_modules/Gallery.png')} style={{ width: 19, height: 21, marginLeft: '32%' }} />
+                                        </TouchableHighlight>
+                                        <TouchableHighlight style={{ ...styles.menuBarItem, ...styles.menuBarItemMarginTop }} onPress={() => this.setContentMode(4)} underlayColor={'transparent'} >
+                                            <Image source={require('../node_modules/Docs.png')} style={{ width: 19, height: 21, marginLeft: '32%' }} />
+                                        </TouchableHighlight>
+                                        <TouchableHighlight style={{ ...styles.menuBarItem, ...styles.menuBarItemMarginTop, ... { paddingBottom: 15, } }} onPress={() => this.setContentMode(4)} underlayColor={'transparent'} >
+                                            <Image source={require('../node_modules/Docs.png')} style={{ width: 19, height: 21, marginLeft: '32%' }} />
+                                        </TouchableHighlight>
+
                                     </View>
-                                </React.Fragment>
+                                </ScrollView>
                             </View>
                             <View style={styles.contentFooter}>
                                 <React.Fragment>
@@ -203,6 +264,7 @@ export default class ContentView extends React.Component {
                         </View>
                     </React.Fragment>
                 </View>
+                {stillageView}
             </View>
         </React.Fragment>;
 
@@ -238,6 +300,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center'
     },
+    headerRight: {
+        flex: 1,
+        width: '100%',
+        height: '55%',
+        marginTop: '2.5%',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        // backgroundColor: 'red'
+    },
     content: {
         flex: 1,
         backgroundColor: '#E5E5E5',
@@ -245,6 +316,7 @@ const styles = StyleSheet.create({
     },
     menuBar: {
         flex: 0.07,
+        // width: '5%',
         borderTopRightRadius: 10,
         backgroundColor: 'white',
     },
@@ -255,7 +327,9 @@ const styles = StyleSheet.create({
     },
     menuBarItem: {
         width: '100%',
-        height: '3%'
+        height: '7%',
+        paddingTop: '2%',
+        // backgroundColor: 'red'
     },
     menuBarItemMarginTop: {
         marginTop: 30,

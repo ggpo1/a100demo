@@ -186,6 +186,32 @@ const vikData: Array<IVikData> = [
         ],
         color: Colors.Green,
     },
+    { 
+        row: 5, 
+        cell: 2, 
+        level: 2,
+        elementName: 'Стойка',
+        producer: 'La Fortezza est',
+        type: 2, 
+        size: '80x70x2300' ,
+        defectType: 'Повреждение',
+        repaired: false,
+        watchDate: '28.01.2019',
+        repairDate: '',
+        comment: '',
+        repairDetailsAgo: 0,
+        photos: [
+            Images.first,
+            Images.second,
+            Images.third,
+        ],
+        repairPhotos: [
+            Images.first,
+            Images.second,
+            Images.third,
+        ],
+        color: Colors.Yellow,
+    },
 ]
 
 export default vikData;

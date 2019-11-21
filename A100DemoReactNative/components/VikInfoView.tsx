@@ -51,115 +51,136 @@ export default class VikInfoView extends React.Component<MyProps, MyState> {
 
 
         return (
-            <View style={styles.vikInfoWrapper}>
-                <View style={styles.vikInfoHeader}>
-                    <View style={styles.headerLeft}>
-                        <TouchableHighlight onPress={this.onPressHandle} underlayColor={'transparent'} >
-                            <Image source={require('../node_modules/Close.png')} style={{ width: 20, height: 20 }} />
-                        </TouchableHighlight>
+            <View style={{
+                flex: 1,
+                width: '100%',
+                height: '100%',
+                // marginLeft: '53%',
+                backgroundColor: 'transparent'
+            }}>
 
-                    </View>
-                    <View style={styles.headerRight}><Text style={{ color: 'white' }}>Повреждение</Text></View>
+                <View style={{
+                    position: 'absolute',
+                    width: '47%',
+                    height: '100%',
+                    marginLeft: '53%',
+                    backgroundColor: 'black',
+                    opacity: 0.5
+                }}>
+                    <TouchableHighlight style={{
+                        position: 'absolute',
+                        width: '100%',
+                        height: '100%',
+                        backgroundColor: 'black',
+                        opacity: 0.5,
+                    }}
+                        onPress={this.onPressHandle} underlayColor={'transparent'}>
+                        <Text></Text>
+                    </TouchableHighlight>
                 </View>
-                <View style={styles.vikInfoContent}>
-                    <View style={styles.vikInformation}>
-                        <View style={styles.infoRow}>
-                            <View style={styles.infoRowRowed}>
-                                <Text style={styles.infoRowText}>Ряд</Text>
-                                <Text style={styles.rowValue}>{this.state.vikInfo.vikData.row}</Text>
-                            </View>
-                            <View style={styles.infoRowRowed}>
-                                <Text style={styles.infoRowText}>Место</Text>
-                                <Text style={styles.rowValue}>{this.state.vikInfo.vikData.cell}</Text>
-                            </View>
-                            <View style={styles.infoRowRowed}>
-                                <Text style={styles.infoRowText}>Уровень</Text>
-                                <Text style={styles.rowValue}>{this.state.vikInfo.vikData.level}</Text>
-                            </View>
+
+                <View style={styles.vikInfoWrapper}>
+                    <View style={styles.vikInfoHeader}>
+                        <View style={styles.headerLeft}>
+                            <TouchableHighlight onPress={this.onPressHandle} underlayColor={'transparent'} >
+                                <Image source={require('../node_modules/Close.png')} style={{ width: 20, height: 20 }} />
+                            </TouchableHighlight>
+
                         </View>
-                        <View style={styles.infoRow}>
-                            <View style={styles.infoRowColumned}>
-                                <Text style={styles.infoRowText}>Элемент</Text>
-                                <Text style={styles.rowValueFont}>{this.state.vikInfo.vikData.elementName}</Text>
+                        <View style={styles.headerRight}><Text style={{ color: 'white' }}>Повреждение</Text></View>
+                    </View>
+                    <View style={styles.vikInfoContent}>
+                        <View style={styles.vikInformation}>
+                            <View style={styles.infoRow}>
+                                <View style={styles.infoRowRowed}>
+                                    <Text style={styles.infoRowText}>Ряд</Text>
+                                    <Text style={styles.rowValue}>{this.state.vikInfo.vikData.row}</Text>
+                                </View>
+                                <View style={styles.infoRowRowed}>
+                                    <Text style={styles.infoRowText}>Место</Text>
+                                    <Text style={styles.rowValue}>{this.state.vikInfo.vikData.cell}</Text>
+                                </View>
+                                <View style={styles.infoRowRowed}>
+                                    <Text style={styles.infoRowText}>Уровень</Text>
+                                    <Text style={styles.rowValue}>{this.state.vikInfo.vikData.level}</Text>
+                                </View>
                             </View>
-                            <View style={styles.infoRowColumned}>
-                                <Text style={styles.infoRowText}>Размер</Text>
-                                <Text style={styles.rowValueFont}>{this.state.vikInfo.vikData.size}</Text>
+                            <View style={styles.infoRow}>
+                                <View style={styles.infoRowColumned}>
+                                    <Text style={styles.infoRowText}>Элемент</Text>
+                                    <Text style={styles.rowValueFont}>{this.state.vikInfo.vikData.elementName}</Text>
+                                </View>
+                                <View style={styles.infoRowColumned}>
+                                    <Text style={styles.infoRowText}>Размер</Text>
+                                    <Text style={styles.rowValueFont}>{this.state.vikInfo.vikData.size}</Text>
+                                </View>
+                                <View style={styles.infoRowColumned}>
+                                    <Text style={styles.infoRowText}>Уровень риска</Text>
+                                    <View style={{ width: 100, height: 25, backgroundColor: this.state.vikInfo.color, borderRadius: 10 }}>
+                                        <Text style={{
+                                            width: '100%',
+                                            fontSize: 11,
+                                            fontWeight: '100',
+                                            lineHeight: 25,
+                                            textAlign: 'center',
+                                        }}>{this.state.vikInfo.color === '#0da50f' ? 'Зелёный' : this.state.vikInfo.color === Colors.Yellow ? 'Желтый' : 'Красный'}</Text>
+                                    </View>
+                                </View>
                             </View>
-                            <View style={styles.infoRowColumned}>
-                                <Text style={styles.infoRowText}>Уровень риска</Text>
-                                <View style={{ width: 100, height: 25, backgroundColor: this.state.vikInfo.color, borderRadius: 10 }}>
-                                    <Text style={{
-                                        width: '100%',
-                                        fontSize: 11,
-                                        fontWeight: '100',
-                                        lineHeight: 25,
-                                        textAlign: 'center',
-                                    }}>{this.state.vikInfo.color === '#0da50f' ? 'Зелёный' : 'Красный'}</Text>
+                            <View style={styles.infoRow}>
+                                <View style={styles.infoRowColumned}>
+                                    <Text style={styles.infoRowText}>Тип дефекта</Text>
+                                    <Text style={styles.rowValueFont}>{this.state.vikInfo.vikData.defectType}</Text>
+                                </View>
+                                <View style={styles.infoRowColumned}>
+                                    <Text style={{ color: 'transparent' }}>Размер</Text>
+                                    <Text style={{ color: 'transparent' }}>100x70x5000</Text>
+                                </View>
+                                <View style={styles.infoRowColumned}>
+                                    <Text style={styles.infoRowText}>Производитель</Text>
+                                    <Text style={styles.rowValueFont}>{this.state.vikInfo.vikData.producer}</Text>
+                                </View>
+                            </View>
+                            <View style={styles.infoRow}>
+                                <View style={styles.infoRowColumned}>
+                                    <Text style={styles.infoRowText}>Дата обнаружения</Text>
+                                    <Text style={styles.rowValueFont}>{this.state.vikInfo.vikData.watchDate}</Text>
+                                </View>
+                                <View style={styles.infoRowColumned}>
+                                    <Text style={styles.infoRowText}>Элемент заменен</Text>
+                                    <Text style={styles.rowValueFont}>{this.state.vikInfo.vikData.repaired ? 'Да' : 'Нет'}</Text>
+                                </View>
+                                <View style={styles.infoRowColumned}>
+                                    <Text style={styles.infoRowText}>Дата замены</Text>
+                                    <Text style={styles.rowValueFont}>{this.state.vikInfo.vikData.repairDate}</Text>
+                                </View>
+                            </View>
+                            <View style={styles.infoRow}>
+                                <View style={styles.infoRowColumned}>
+                                    <Text style={styles.infoRowText}>Комментарий</Text>
+                                    <Text style={styles.rowValueFont}>{this.state.vikInfo.vikData.comment}</Text>
+                                </View>
+                            </View>
+                            <View style={{
+                                flex: 1,
+                                flexDirection: 'row',
+                                width: '100%',
+                            }}>
+                                <View style={{
+                                    flex: 1,
+                                }}>
+                                    <Text style={styles.infoRowText}>Повреждение до ремонта</Text>
+                                    <PhotoGallery bigCollection={false} photos={this.state.vikInfo.vikData.photos} eEmitter={this.state.eEmitter} />
+                                </View>
+                                <View style={{
+                                    flex: 1,
+                                }}>
+                                    <Text style={styles.infoRowText}>После ремонта</Text>
+                                    <PhotoGallery bigCollection={false} photos={this.state.vikInfo.vikData.repairPhotos} eEmitter={this.state.eEmitter} />
                                 </View>
                             </View>
                         </View>
-                        <View style={styles.infoRow}>
-                            <View style={styles.infoRowColumned}>
-                                <Text style={styles.infoRowText}>Тип дефекта</Text>
-                                <Text style={styles.rowValueFont}>{this.state.vikInfo.vikData.defectType}</Text>
-                            </View>
-                            <View style={styles.infoRowColumned}>
-                                <Text style={{ color: 'transparent' }}>Размер</Text>
-                                <Text style={{ color: 'transparent' }}>100x70x5000</Text>
-                            </View>
-                            <View style={styles.infoRowColumned}>
-                                <Text style={styles.infoRowText}>Производитель</Text>
-                                <Text style={styles.rowValueFont}>{this.state.vikInfo.vikData.producer}</Text>
-                            </View>
-                        </View>
-                        <View style={styles.infoRow}>
-                            <View style={styles.infoRowColumned}>
-                                <Text style={styles.infoRowText}>Дата обнаружения</Text>
-                                <Text style={styles.rowValueFont}>{this.state.vikInfo.vikData.watchDate}</Text>
-                            </View>
-                            <View style={styles.infoRowColumned}>
-                                <Text style={styles.infoRowText}>Элемент заменен</Text>
-                                <Text style={styles.rowValueFont}>{this.state.vikInfo.vikData.repaired ? 'Да' : 'Нет'}</Text>
-                            </View>
-                            <View style={styles.infoRowColumned}>
-                                <Text style={styles.infoRowText}>Дата замены</Text>
-                                <Text style={styles.rowValueFont}>{this.state.vikInfo.vikData.repairDate}</Text>
-                            </View>
-                        </View>
-                        <View style={styles.infoRow}>
-                            <View style={styles.infoRowColumned}>
-                                <Text style={styles.infoRowText}>Комментарий</Text>
-                                <Text style={styles.rowValueFont}>{this.state.vikInfo.vikData.comment}</Text>
-                            </View>
-                        </View>
-                        <View style={{
-                            flex: 1,
-                            flexDirection: 'row',
-                            width: '100%',
-                        }}>
-                            <View style={{
-                                flex: 1,
-                            }}>
-                                <Text style={styles.infoRowText}>Повреждение до ремонта</Text>
-                                <PhotoGallery bigCollection={false} photos={this.state.vikInfo.vikData.photos} eEmitter={this.state.eEmitter} />
-                            </View>
-                            <View style={{
-                                flex: 1,
-                            }}>
-                                <Text style={styles.infoRowText}>После ремонта</Text>
-                                <PhotoGallery bigCollection={false} photos={this.state.vikInfo.vikData.repairPhotos} eEmitter={this.state.eEmitter} />
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.vikInfoFooter}>
-                        <View style={[{ width: "100%", height: '100%', borderRadius: 20, backgroundColor: "transparent" }]}>
-                            <Button
-                                onPress={() => { }}
-                                title="Заменить поврежденный элемент"
-                                color="#2D9CDB"
-                            />
-                        </View>
+                        
                     </View>
                 </View>
             </View>
@@ -170,7 +191,7 @@ export default class VikInfoView extends React.Component<MyProps, MyState> {
 const styles = StyleSheet.create({
     vikInfoWrapper: {
         flex: 1,
-        width: '45%',
+        width: '53%',
         height: '100%',
         borderTopLeftRadius: 10,
         borderBottomLeftRadius: 10,

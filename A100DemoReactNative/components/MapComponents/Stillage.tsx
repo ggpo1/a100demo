@@ -34,7 +34,7 @@ export default class Stillage extends React.Component<MyProps, MyState> {
     constructor(props) {
         super(props);
 
-        this.state = { 
+        this.state = {
             modalVisible: this.props.modalVisible,
             row: this.props.row,
             cell: this.props.cell,
@@ -51,7 +51,7 @@ export default class Stillage extends React.Component<MyProps, MyState> {
         alert(this.props.type);
     }
 
-    
+
 
     render() {
         const styles = StyleSheet.create({
@@ -59,8 +59,8 @@ export default class Stillage extends React.Component<MyProps, MyState> {
                 position: 'absolute',
                 marginTop: this.props.y,
                 marginLeft: this.props.x,
-                width: this.props.isVertical ? 50 : 160,
-                height: this.props.isVertical ? 160 : 50,
+                width: this.props.isVertical ? 35 : 130,
+                height: this.props.isVertical ? 110 : 35,
                 backgroundColor: 'white',
                 borderWidth: 3,
                 borderStyle: 'solid',
@@ -77,13 +77,16 @@ export default class Stillage extends React.Component<MyProps, MyState> {
                 position: 'absolute',
                 marginTop: this.props.y,
                 marginLeft: this.props.x,
-                width: this.props.isVertical ? 50 : 110,
-                height: this.props.isVertical ? 110 : 50,
+                width: this.props.isVertical ? 35 : 80,
+                height: this.props.isVertical ? 80 : 35,
                 backgroundColor: 'white',
                 borderWidth: 3,
                 borderStyle: 'solid',
                 borderColor: this.props.color
             },
+            Text: {
+                fontSize: 9,
+            }
         });
 
         let stillage;
@@ -99,8 +102,8 @@ export default class Stillage extends React.Component<MyProps, MyState> {
                 <View style={styles.stillageVikWrapper}>
                     <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[0]} color={Colors.Red} />
                     <View style={{ height: '100%', alignItems: 'center' }}>
-                        <Text>Р{this.props.row}</Text>
-                        <Text>М{this.props.cell}</Text>
+                        <Text style={styles.Text}>Р{this.props.row}</Text>
+                        <Text style={styles.Text}>М{this.props.cell}</Text>
                     </View>
                     <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[2]} color={Colors.Green} />
                 </View>
@@ -110,8 +113,8 @@ export default class Stillage extends React.Component<MyProps, MyState> {
                 <View style={styles.stillageVikWrapper}>
                     <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[1]} color={Colors.Red} />
                     <View style={{ height: '100%', alignItems: 'center' }}>
-                        <Text>Р{this.props.row}</Text>
-                        <Text>М{this.props.cell}</Text>
+                        <Text style={styles.Text}>Р{this.props.row}</Text>
+                        <Text style={styles.Text}>М{this.props.cell}</Text>
                     </View>
                     <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[0]} color={Colors.TRANS} />
                 </View>
@@ -121,8 +124,8 @@ export default class Stillage extends React.Component<MyProps, MyState> {
                 <View style={styles.stillageVikWrapper}>
                     <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[3]} color={Colors.TRANS} />
                     <View style={{ height: '100%', alignItems: 'center' }}>
-                        <Text>Р{this.props.row}</Text>
-                        <Text>М{this.props.cell}</Text>
+                        <Text style={styles.Text}>Р{this.props.row}</Text>
+                        <Text style={styles.Text}>М{this.props.cell}</Text>
                     </View>
                     <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[3]} color={Colors.Green} />
                 </View>
@@ -132,8 +135,8 @@ export default class Stillage extends React.Component<MyProps, MyState> {
                 <View style={styles.stillageVikWrapper}>
                     <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[5]} color={Colors.Green} />
                     <View style={{ height: '100%', alignItems: 'center' }}>
-                        <Text>Р{this.props.row}</Text>
-                        <Text>М{this.props.cell}</Text>
+                        <Text style={styles.Text}>Р{this.props.row}</Text>
+                        <Text style={styles.Text}>М{this.props.cell}</Text>
                     </View>
                     <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[6]} color={Colors.Green} />
                 </View>
@@ -143,10 +146,10 @@ export default class Stillage extends React.Component<MyProps, MyState> {
                 <View style={styles.stillageVikWrapper}>
                     <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[0]} color={Colors.TRANS} />
                     <View style={{ height: '100%', alignItems: 'center' }}>
-                        <Text>Р{this.props.row}</Text>
-                        <Text>М{this.props.cell}</Text>
+                        <Text style={styles.Text}>Р{this.props.row}</Text>
+                        <Text style={styles.Text}>М{this.props.cell}</Text>
                     </View>
-                    <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[0]} color={Colors.TRANS} />
+                    <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[7]} color={Colors.Yellow} />
                 </View>
             </View>;
         } else if (this.props.type === 6) {
@@ -154,8 +157,8 @@ export default class Stillage extends React.Component<MyProps, MyState> {
                 <View style={styles.stillageVikWrapper}>
                     <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[3]} color={Colors.Green} />
                     <View style={{ height: '100%', alignItems: 'center' }}>
-                        <Text>Р{this.props.row}</Text>
-                        <Text>М{this.props.cell}</Text>
+                        <Text style={styles.Text}>Р{this.props.row}</Text>
+                        <Text style={styles.Text}>М{this.props.cell}</Text>
                     </View>
                     <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[3]} color={Colors.TRANS} />
                 </View>
@@ -165,8 +168,8 @@ export default class Stillage extends React.Component<MyProps, MyState> {
                 <View style={styles.stillageVikWrapper}>
                     <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[0]} color={Colors.TRANS} />
                     <View style={{ height: '100%', alignItems: 'center' }}>
-                        <Text>Р{this.props.row}</Text>
-                        <Text>М{this.props.cell}</Text>
+                        <Text style={styles.Text}>Р{this.props.row}</Text>
+                        <Text style={styles.Text}>М{this.props.cell}</Text>
                     </View>
                     <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[0]} color={Colors.TRANS} />
                 </View>
@@ -176,8 +179,104 @@ export default class Stillage extends React.Component<MyProps, MyState> {
                 <View style={styles.stillageVikWrapper}>
                     <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[4]} color={Colors.Red} />
                     <View style={{ height: '100%', alignItems: 'center' }}>
-                        <Text>Р{this.props.row}</Text>
-                        <Text>М{this.props.cell}</Text>
+                        <Text style={styles.Text}>Р{this.props.row}</Text>
+                        <Text style={styles.Text}>М{this.props.cell}</Text>
+                    </View>
+                    <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[0]} color={Colors.TRANS} />
+                </View>
+            </View>;
+        } else if (this.props.type === 9) {
+            stillage = <View style={{
+                position: 'absolute',
+                marginTop: this.props.y,
+                marginLeft: this.props.x,
+                width: this.props.isVertical ? 35 : 130,
+                height: this.props.isVertical ? 110 : 35,
+                backgroundColor: 'white',
+                borderWidth: 3,
+                borderStyle: 'solid',
+                borderLeftColor: this.props.color,
+                borderTopColor: this.props.color,
+                borderBottomColor: this.props.color,
+                borderRightColor: 'red',
+            }}>
+                <View style={styles.stillageVikWrapper}>
+                    <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[4]} color={Colors.Red} />
+                    <View style={{ height: '100%', alignItems: 'center' }}>
+                        <Text style={styles.Text}>Р{this.props.row}</Text>
+                        <Text style={styles.Text}>М{this.props.cell}</Text>
+                    </View>
+                    <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[0]} color={Colors.TRANS} />
+                </View>
+            </View>;
+        } else if (this.props.type === 10) {
+            stillage = <View style={{
+                position: 'absolute',
+                marginTop: this.props.y,
+                marginLeft: this.props.x,
+                width: this.props.isVertical ? 35 : 80,
+                height: this.props.isVertical ? 80 : 35,
+                backgroundColor: 'white',
+                borderWidth: 3,
+                borderStyle: 'solid',
+                borderLeftColor: this.props.color,
+                borderTopColor: this.props.color,
+                borderBottomColor: this.props.color,
+                borderRightColor: 'red',
+            }}>
+                <View style={styles.stillageVikWrapper}>
+                    <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[0]} color={Colors.TRANS} />
+                    <View style={{ height: '100%', alignItems: 'center' }}>
+                        <Text style={styles.Text}>Р{this.props.row}</Text>
+                        <Text style={styles.Text}>М{this.props.cell}</Text>
+                    </View>
+                    <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[0]} color={Colors.Yellow} />
+                </View>
+            </View>;
+        } else if (this.props.type === 11) {
+            stillage = <View style={{
+                position: 'absolute',
+                marginTop: this.props.y,
+                marginLeft: this.props.x,
+                width: this.props.isVertical ? 35 : 130,
+                height: this.props.isVertical ? 110 : 35,
+                backgroundColor: 'white',
+                borderWidth: 3,
+                borderStyle: 'solid',
+                borderLeftColor: this.props.color,
+                borderTopColor: this.props.color,
+                borderRightColor: this.props.color,
+                borderBottomColor: 'red',
+            }}>
+                <View style={styles.stillageVikWrapper}>
+                    <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[1]} color={Colors.Red} />
+                    <View style={{ height: '100%', alignItems: 'center' }}>
+                        <Text style={styles.Text}>Р{this.props.row}</Text>
+                        <Text style={styles.Text}>М{this.props.cell}</Text>
+                    </View>
+                    <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[0]} color={Colors.TRANS} />
+                </View>
+            </View>;
+        } else if (this.props.type === 12) {
+            stillage = <View style={{
+                position: 'absolute',
+                marginTop: this.props.y,
+                marginLeft: this.props.x,
+                width: this.props.isVertical ? 35 : 130,
+                height: this.props.isVertical ? 110 : 35,
+                backgroundColor: 'white',
+                borderWidth: 3,
+                borderStyle: 'solid',
+                borderLeftColor: this.props.color,
+                borderTopColor: this.props.color,
+                borderBottomColor: this.props.color,
+                borderRightColor: 'red',
+            }}>
+                <View style={styles.stillageVikWrapper}>
+                    <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[0]} color={Colors.TRANS} />
+                    <View style={{ height: '100%', alignItems: 'center' }}>
+                        <Text style={styles.Text}>Р{this.props.row}</Text>
+                        <Text style={styles.Text}>М{this.props.cell}</Text>
                     </View>
                     <Circle eEmitter={this.state.eEmitter} modalVisible={this.state.modalVisible} vikData={viks[0]} color={Colors.TRANS} />
                 </View>

@@ -272,6 +272,21 @@ export default class VikTableView extends React.Component<Props, State> {
                     <View style={styles.headerCell}><Text style={{ fontSize: 9, }}>{this.state.VikData[6].repaired ? 'Да' : 'Нет'}</Text></View>
                 </View>
             );
+            _contentRows.push(
+                <View key={'contentRow' + 7} style={{ ...styles.contentRow, ...{ backgroundColor: this.state.VikData[7].color } }}>
+                    <TouchableHighlight style={styles.headerCell} onPress={() => this.onPressHandle(7)} underlayColor={'transparent'} >
+                        <Text style={{ fontSize: 12, }}>{this.state.VikData[7].row}</Text>
+                    </TouchableHighlight>
+                    <View style={styles.headerCell}><Text style={{ fontSize: 9, }}>{this.state.VikData[7].cell}</Text></View>
+                    <View style={styles.headerCell}><Text style={{ fontSize: 9, }}>{this.state.VikData[7].level}</Text></View>
+                    <View style={styles.headerCell}><Text style={{ fontSize: 9, }}>{this.state.VikData[7].elementName}</Text></View>
+                    <View style={styles.headerCell}><Text style={{ fontSize: 9, }}>{this.state.VikData[7].size}</Text></View>
+                    <View style={styles.headerCell}><Text style={{ fontSize: 9, }}>{this.state.VikData[7].defectType}</Text></View>
+                    <View style={styles.headerCell}><Text style={{ fontSize: 9, }}>{this.state.VikData[7].comment}</Text></View>
+                    <View style={styles.headerCell}><Text style={{ fontSize: 9, }}>{this.state.VikData[7].watchDate}</Text></View>
+                    <View style={styles.headerCell}><Text style={{ fontSize: 9, }}>{this.state.VikData[7].repaired ? 'Да' : 'Нет'}</Text></View>
+                </View>
+            );
             i++;
             // });
         }

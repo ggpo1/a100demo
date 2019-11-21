@@ -7,7 +7,8 @@ import {
     Text,
     Alert,
     ImageBackground,
-    Image
+    Image,
+    TouchableHighlight
 } from 'react-native';
 import EventEmitter from 'EventEmitter';
 
@@ -41,9 +42,9 @@ export default class Map extends React.Component {
 
     modalReducer(visible) {
         let _visible = this.state.browsePhotoModalVisible;
-        this.setState({ 
+        this.setState({
             modalVisible: visible,
-            browsePhotoModalVisible: _visible,  
+            browsePhotoModalVisible: _visible,
         })
     }
 
@@ -51,7 +52,7 @@ export default class Map extends React.Component {
         let _visible = this.state.modalVisible;
         this.setState({
             modalVisible: !_visible,
-            browsePhotoModalVisible: visible,  
+            browsePhotoModalVisible: visible,
         });
     }
 
@@ -97,30 +98,61 @@ export default class Map extends React.Component {
             photoModal = <PhotoModal eEmitter={eEmitter} visible={this.state.browsePhotoModalVisible} />
         }
 
-            MapContent = <ImageBackground source={require('../node_modules/map.jpg')} style={{ flex: 1, borderRadius: 10, }} imageStyle={{ borderRadius: 10, }}>
+        let button =
+            <TouchableHighlight style={{
+                flex: 0.1,
+                width: '100%',
+                height: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: '#2196f3',
+                marginBottom: 5,
+            }}
+                onPress={() => {}} underlayColor={'transparent'} >
+                <Text style={{ fontSize: 15, fontWeight: 'bold', color: 'white' }} >ПОКАЗАТЬ СКЛАД ПОЛНОСТЬЮ</Text>
+            </TouchableHighlight>;
 
-                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={1} cell={1} x={100} y={50} type={1} isVertical={false} color={StillageColors.BLUE} />
-                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={1} cell={2} x={257} y={50} type={6} isVertical={false} color={StillageColors.BLUE} />
-                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={1} cell={3} x={414} y={50} type={5} isVertical={false} color={StillageColors.BLUE} />
+        MapContent =
 
-                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={5} cell={1} x={150} y={150} type={8} isVertical={false} color={StillageColors.CORAL} />
-                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={5} cell={2} x={307} y={150} type={5} isVertical={false} color={StillageColors.CORAL} />
+            <ImageBackground source={require('../node_modules/map.jpg')} style={{ flex: 1, borderRadius: 10, }} imageStyle={{ borderRadius: 10, }}>
+                {/* {button} */}
+                
+                
+                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={1} cell={1} x={20} y={15} type={1} isVertical={false} color={StillageColors.BLUE} />
+                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={1} cell={2} x={147} y={15} type={6} isVertical={false} color={StillageColors.BLUE} />
+                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={1} cell={3} x={274} y={15} type={5} isVertical={false} color={StillageColors.BLUE} />
+                
+                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={5} cell={2} x={197} y={65} type={5} isVertical={false} color={StillageColors.CORAL} />
+                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={5} cell={1} x={70} y={65} type={9} isVertical={false} color={StillageColors.CORAL} />
+                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={6} cell={4} x={274} y={98} type={7} isVertical={false} color={StillageColors.CORAL} />
 
-                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={6} cell={2} x={150} y={197} type={4} isVertical={false} color={StillageColors.CORAL} />
-                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={6} cell={3} x={307} y={197} type={5} isVertical={false} color={StillageColors.CORAL} />
+                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={6} cell={2} x={70} y={98} type={4} isVertical={false} color={StillageColors.CORAL} />
+                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={6} cell={3} x={197} y={98} type={10} isVertical={false} color={StillageColors.CORAL} />
 
-                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={5} cell={3} x={440} y={150} type={7} isVertical={false} color={StillageColors.CORAL} />
-                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={6} cell={4} x={440} y={197} type={7} isVertical={false} color={StillageColors.CORAL} />
+                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={5} cell={3} x={274} y={65} type={7} isVertical={false} color={StillageColors.CORAL} />
+                
+                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={5} cell={4} x={401} y={65} type={7} isVertical={false} color={StillageColors.CORAL} />
+                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={6} cell={5} x={401} y={97} type={7} isVertical={false} color={StillageColors.CORAL} />
+                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={7} cell={2} x={197} y={140} type={7} isVertical={false} color={StillageColors.ORANGE} />
+                
+                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={7} cell={1} x={70} y={140} type={12} isVertical={false} color={StillageColors.ORANGE} />
+                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={8} cell={2} x={70} y={172} type={7} isVertical={false} color={StillageColors.ORANGE} />
 
-                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={5} cell={4} x={620} y={150} type={7} isVertical={false} color={StillageColors.CORAL} />
-                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={6} cell={5} x={620} y={197} type={7} isVertical={false} color={StillageColors.CORAL} />
+                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={8} cell={3} x={197} y={172} type={7} isVertical={false} color={StillageColors.ORANGE} />
 
-                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={3} cell={1} x={50} y={100} type={2} isVertical={true} color={StillageColors.BLUE} />
-                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={3} cell={2} x={50} y={265} type={7} isVertical={true} color={StillageColors.BLUE} />
+                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={7} cell={3} x={324} y={140} type={7} isVertical={false} color={StillageColors.ORANGE} />
+                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={8} cell={4} x={324} y={172} type={7} isVertical={false} color={StillageColors.ORANGE} />
+
+                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={7} cell={5} x={451} y={140} type={5} isVertical={false} color={StillageColors.ORANGE} />
+                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={8} cell={6} x={451} y={172} type={5} isVertical={false} color={StillageColors.ORANGE} />
+
+                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={3} cell={2} x={10} y={169} type={7} isVertical={true} color={StillageColors.BLUE} />
+                <Stillage eEmitter={eEmitter} modalVisible={this.state.modalVisible} row={3} cell={1} x={10} y={62} type={11} isVertical={true} color={StillageColors.BLUE} />
+                              
                 {vikInfo}
                 {photoModal}
             </ImageBackground>
-        
+
 
 
 
@@ -135,8 +167,9 @@ export default class Map extends React.Component {
             //             longitudeDelta: 0.0421,
             //         }}
             //     />
-
             MapContent
+
+
 
 
 

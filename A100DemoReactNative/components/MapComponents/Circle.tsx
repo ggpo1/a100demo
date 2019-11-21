@@ -39,8 +39,8 @@ export default class Circle extends React.Component<MyProps> {
         // alert(this.state.modalVisible)
         const styles = StyleSheet.create({
             circle: {
-                width: 45,
-                height: 45,
+                width: 30,
+                height: 30,
                 borderRadius: 100 / 2,
                 borderWidth: 2,
                 borderStyle: 'solid',
